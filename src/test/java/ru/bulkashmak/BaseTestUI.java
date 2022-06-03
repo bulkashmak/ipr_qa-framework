@@ -1,21 +1,23 @@
 package ru.bulkashmak;
 
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Condition.*;
-
 import com.codeborne.selenide.WebDriverRunner;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import ru.bulkashmak.ui.pages.LoginPage;
 
 public class BaseTestUI {
 
-    @BeforeAll
-    public static void setUp() {
+    protected static LoginPage loginPage = new LoginPage();
+
+    @BeforeEach
+    public void setUp() {
+        loginPage.openOK();
         WebDriverRunner.getWebDriver().manage().window().maximize();
+        loginPage.setLanguage();
     }
 
-    @AfterAll
-    public static void tearDown() {
+    @AfterEach
+    public void tearDown() {
         WebDriverRunner.closeWebDriver();
     }
 }
