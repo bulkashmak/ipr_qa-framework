@@ -1,7 +1,10 @@
 package ru.bulkashmak.ui.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -11,6 +14,7 @@ public class PostPage extends BasePage {
 
     private static final String SHORTCUT_MENU_ARROW_X = "//*[@class='new_topic_icodown']";
     private static final String SHORTCUT_MENU_X = "//*[@id='hook_Block_ShortcutMenu']";
+    private static final String COMMENT_LIST_X = "//*[@class='comments_lst_cnt']";
 
     public PostPage deletePost() {
         LOGGER.info("Удалить событие");
@@ -33,6 +37,15 @@ public class PostPage extends BasePage {
         LOGGER.info("Кликнуть кнопку 'Добавить' комментарий");
 
         $x("//*[@class='comments_add-controls']//*[@class='button-pro form-actions_yes']").click();
+
+        return this;
+    }
+
+    public PostPage deleteComment() {
+        LOGGER.info("Удалить комментарий");
+
+        List<SelenideElement> comments = $$x(COMMENT_LIST_X + "//*[@class='comments_body']");
+        comments.get(1).$x(".//*[@title='Удалить']").hover().click();
 
         return this;
     }

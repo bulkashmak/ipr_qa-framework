@@ -55,6 +55,7 @@ public class OkTest extends BaseTestUI {
 
         loginPage.loginToOK()
                 .goToProfilePage()
-                .openPost(postContent);
+                .openPost()
+                .deleteComment();
     }
 }
