@@ -7,9 +7,6 @@ import ru.bulkashmak.ui.enums.PhotoCategories;
 
 import java.util.Random;
 
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Condition.*;
-
 @DisplayName("UI тесты ok.ru")
 public class OkTest extends BaseTestUI {
 
