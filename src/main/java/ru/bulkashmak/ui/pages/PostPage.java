@@ -21,6 +21,22 @@ public class PostPage extends BasePage {
         return this;
     }
 
+    public PostPage inputComment(String comment) {
+        LOGGER.info(String.format("Ввести комментарий '%s'", comment));
+
+        $x("//*[@class='comments_add']//form" +
+                "//*[@class='itx js-comments_add js-ok-e comments_add-ceditable ']").sendKeys(comment);
+        return this;
+    }
+
+    public PostPage addComment() {
+        LOGGER.info("Кликнуть кнопку 'Добавить' комментарий");
+
+        $x("//*[@class='comments_add-controls']//*[@class='button-pro form-actions_yes']").click();
+
+        return this;
+    }
+
     public ProfilePage closePost() {
         LOGGER.info("Закрыть событие");
 
@@ -28,4 +44,5 @@ public class PostPage extends BasePage {
 
         return new ProfilePage();
     }
+
 }

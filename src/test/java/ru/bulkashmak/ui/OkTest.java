@@ -3,6 +3,7 @@ package ru.bulkashmak.ui;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bulkashmak.BaseTestUI;
+import ru.bulkashmak.Util.UiUtil;
 import ru.bulkashmak.ui.enums.PhotoCategories;
 
 import java.util.Random;
@@ -11,6 +12,8 @@ import java.util.Random;
 public class OkTest extends BaseTestUI {
 
     final static String postContent = "Тестовое событие " + new Random().nextInt(10000);
+    static UiUtil uiUtil = new UiUtil();
+    final static String commentString = uiUtil.generateRandomStringOfLength(20);
 
     @Test
     @DisplayName("Добавление нового события с фотографией в ленту")
@@ -24,12 +27,26 @@ public class OkTest extends BaseTestUI {
     }
 
     @Test
+    @DisplayName("Удаление события")
+    public void deletePostTest() {
+
+        loginPage.loginToOK()
+                .goToProfilePage()
+                .openPost()
+                .deletePost();
+
+        System.out.println();
+    }
+
+    @Test
     @DisplayName("Добавление комментария со смайлом к событию")
     public void commentWithEmojiTest() {
 
         loginPage.loginToOK()
                 .goToProfilePage()
-                .openPost(postContent);
+                .openPost()
+                .inputComment(commentString)
+                .addComment();
     }
 
     @Test
@@ -39,17 +56,5 @@ public class OkTest extends BaseTestUI {
         loginPage.loginToOK()
                 .goToProfilePage()
                 .openPost(postContent);
-    }
-
-    @Test
-    @DisplayName("Удаление события")
-    public void deletePostTest() {
-
-        loginPage.loginToOK()
-                .goToProfilePage()
-                .openPost(postContent)
-                .deletePost();
-
-        System.out.println();
     }
 }
