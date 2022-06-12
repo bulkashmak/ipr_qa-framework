@@ -16,6 +16,7 @@ public class OkTest extends BaseTestUI {
     final static String postContent = "Тестовое событие " + new Random().nextInt(10000);
 
     @Test
+    @DisplayName("Добавление нового события с фотографией в ленту")
     public void createNewPostTest() {
 
         loginPage.loginToOK()
@@ -26,6 +27,25 @@ public class OkTest extends BaseTestUI {
     }
 
     @Test
+    @DisplayName("Добавление комментария со смайлом к событию")
+    public void commentWithEmojiTest() {
+
+        loginPage.loginToOK()
+                .goToProfilePage()
+                .openPost(postContent);
+    }
+
+    @Test
+    @DisplayName("Удаление комментария")
+    public void deleteCommentTest() {
+
+        loginPage.loginToOK()
+                .goToProfilePage()
+                .openPost(postContent);
+    }
+
+    @Test
+    @DisplayName("Удаление события")
     public void deletePostTest() {
 
         loginPage.loginToOK()
