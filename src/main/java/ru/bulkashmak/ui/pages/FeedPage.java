@@ -1,6 +1,5 @@
 package ru.bulkashmak.ui.pages;
 
-import com.codeborne.selenide.SelenideElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.bulkashmak.ui.pages.interfaces.LeftNavBar;

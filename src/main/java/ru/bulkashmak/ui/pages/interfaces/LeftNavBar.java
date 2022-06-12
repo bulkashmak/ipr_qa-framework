@@ -2,8 +2,12 @@ package ru.bulkashmak.ui.pages.interfaces;
 
 import lombok.Getter;
 import org.slf4j.Logger;
+import ru.bulkashmak.ui.enums.PhotoCategories;
+import ru.bulkashmak.ui.pages.BasePage;
 import ru.bulkashmak.ui.pages.ProfilePage;
 import ru.bulkashmak.ui.properties.UserData;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
