@@ -23,7 +23,7 @@ public class OkTest extends BaseTestUI {
                 .createNewPost()
                 .inputPostText(postContent)
                 .addPostPhoto(PhotoCategories.PERSONAL_PHOTOS)
-                .sharePost();
+                .sharePost(postContent);
     }
 
     @Test
@@ -34,8 +34,6 @@ public class OkTest extends BaseTestUI {
                 .goToProfilePage()
                 .openPost()
                 .deletePost();
-
-        System.out.println();
     }
 
     @Test
@@ -45,8 +43,7 @@ public class OkTest extends BaseTestUI {
         loginPage.loginToOK()
                 .goToProfilePage()
                 .openPost()
-                .inputComment(commentString)
-                .addComment();
+                .addComment(commentString);
     }
 
     @Test

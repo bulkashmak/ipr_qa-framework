@@ -1,13 +1,12 @@
 package ru.bulkashmak.ui.pages;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.Condition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.bulkashmak.ui.User;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginPage extends BasePage {
 
@@ -26,7 +25,7 @@ public class LoginPage extends BasePage {
         $x(FIELD_PASSWORD_X).sendKeys(user.getPassword());
         $x(BUTTON_LOGIN_X).click();
 
-        assertEquals("https://ok.ru/", WebDriverRunner.getWebDriver().getCurrentUrl(),
+        assertTrue($x("//*[@class='layout-main']").shouldBe(Condition.visible).isDisplayed(),
                 "Не был произведен переход на главную страницу");
 
         return new FeedPage();

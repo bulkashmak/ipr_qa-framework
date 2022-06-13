@@ -1,15 +1,26 @@
 package ru.bulkashmak.ui.pages.interfaces;
 
+import com.codeborne.selenide.Condition;
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.bulkashmak.ui.pages.ProfilePage;
-import ru.bulkashmak.ui.properties.UserData;
 
-import static com.codeborne.selenide.Selenide.$x;
+import static org.junit.jupiter.api.Assertions.*;
+
+import static com.codeborne.selenide.Selenide.*;
 
 public interface LeftNavBar {
+    Logger LOGGER = LoggerFactory.getLogger(LeftNavBar.class);
 
     default ProfilePage goToProfilePage() {
+        LOGGER.info("Переход на страницу 'Профиль'");
+
         $x(LeftNavBarElements.PROFILE.getXpath()).click();
+
+        assertTrue($x("//*[@id='hook_Block_UserProfileCoverWrapper']")
+                .shouldBe(Condition.visible).isDisplayed(),
+                "Не произошел переход на страницу Профиля");
 
         return new ProfilePage();
     }
@@ -17,8 +28,7 @@ public interface LeftNavBar {
     @Getter
     enum LeftNavBarElements {
 
-        PROFILE(String.format("//*[@id='hook_Block_SideNavigation']//*[@href='/profile/%s']",
-                UserData.getProperty("userId")));
+        PROFILE("//*[@id='hook_Block_SideNavigation']//*[@data-l='t,userPage']");
 
         private final String xpath;
 

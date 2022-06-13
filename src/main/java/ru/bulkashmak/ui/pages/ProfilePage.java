@@ -9,12 +9,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ProfilePage extends BasePage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProfilePage.class);
 
     private static final String POSTS_LIST_X = "//*[@class='feed-list __compact']";
+    private static final String POST_MODAL_X = "//*[@id='hook_Block_MediaTopicLayerBody']";
 
     public PostPage openPost(String postContent) {
         LOGGER.info(String.format("Открыть пост ''%s''", postContent));
@@ -26,11 +28,14 @@ public class ProfilePage extends BasePage {
     }
 
     public PostPage openPost() {
-        LOGGER.info("Открыть последний пост");
+        LOGGER.info("Открыть последнее событие");
 
         List<SelenideElement> posts = $$x(POSTS_LIST_X + "/*[@class='feed-w']");
-        posts.get(1).$x(".//*[@class='media-text_cnt']")
+        posts.get(0).$x(".//*[@class='media-text_cnt']")
                 .shouldBe(and("Clickable", visible, enabled)).scrollIntoView(true).click();
+
+        assertTrue($x(POST_MODAL_X).shouldBe(visible).isDisplayed(),
+                "Событие не открылось");
 
         return new PostPage();
     }
