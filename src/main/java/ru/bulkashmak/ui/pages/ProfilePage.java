@@ -31,8 +31,14 @@ public class ProfilePage extends BasePage {
         LOGGER.info("Открыть последнее событие");
 
         List<SelenideElement> posts = $$x(POSTS_LIST_X + "/*[@class='feed-w']");
-        posts.get(0).$x(".//*[@class='media-text_cnt']")
-                .shouldBe(and("Clickable", visible, enabled)).scrollIntoView(true).click();
+        for (SelenideElement post :
+                posts) {
+            if (post.$x(".//*[@class='widget_count js-count']").exists()) {
+                post.$x(".//*[@class='media-text_cnt']")
+                        .shouldBe(and("Clickable", visible, enabled)).scrollIntoView(true).click();
+                break;
+            }
+        }
 
         assertTrue($x(POST_MODAL_X).shouldBe(visible).isDisplayed(),
                 "Событие не открылось");

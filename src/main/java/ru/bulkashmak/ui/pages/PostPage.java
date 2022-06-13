@@ -71,7 +71,7 @@ public class PostPage extends BasePage {
         LOGGER.info("Удалить комментарий");
 
         List<SelenideElement> comments = $$x(COMMENT_LIST_X + "//*[@class='comments_body']");
-        comments.get(1).$x(".//*[@title='Удалить']").hover().click();
+        comments.get(0).$x(".//*[@title='Удалить']").hover().click();
 
         assertTrue($x(POST_MODAL_X + "//*[@class='delete-stub_i']")
                         .shouldBe(Condition.visible).isDisplayed(),
