@@ -1,4 +1,4 @@
-package ru.bulkashmak;
+package ru.bulkashmak.ui;
 
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.AfterEach;
