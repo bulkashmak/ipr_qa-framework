@@ -2,13 +2,13 @@ package ru.bulkashmak.ui;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.bulkashmak.ui.properties.UserData;
+import ru.bulkashmak.ui.properties.UiProperties;
 
 @Getter
 @Setter
 public class User {
 
-    private String email = UserData.getProperty("email");
-    private String password = UserData.getProperty("password");
+    private String email = UiProperties.getProperty("email");
+    private String password = UiProperties.getProperty("password");
     private String language = "Русский";
 }
