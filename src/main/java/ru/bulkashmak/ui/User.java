@@ -2,7 +2,6 @@ package ru.bulkashmak.ui;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.bulkashmak.ui.properties.UiProperties;
 
 @Getter
 @Setter
