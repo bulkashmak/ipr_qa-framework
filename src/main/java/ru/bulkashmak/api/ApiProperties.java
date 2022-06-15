@@ -1,4 +1,6 @@
-package ru.bulkashmak.ui.properties;
+package ru.bulkashmak.api;
+
+import ru.bulkashmak.ui.UiProperties;
 
 import java.io.IOException;
 import java.io.InputStream;
