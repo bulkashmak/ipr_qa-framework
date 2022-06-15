@@ -10,4 +10,5 @@ public class User {
 
     private String email = UserData.getProperty("email");
     private String password = UserData.getProperty("password");
+    private String language = "Русский";
 }

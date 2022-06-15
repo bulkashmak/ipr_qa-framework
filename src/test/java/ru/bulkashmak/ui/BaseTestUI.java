@@ -8,12 +8,13 @@ import ru.bulkashmak.ui.pages.LoginPage;
 public class BaseTestUI {
 
     protected static LoginPage loginPage = new LoginPage();
+    private static final User user = new User();
 
     @BeforeEach
     public void setUp() {
         loginPage.openOK();
         WebDriverRunner.getWebDriver().manage().window().maximize();
-        loginPage.setLanguage();
+        loginPage.setLanguage(user.getLanguage());
     }
 
     @AfterEach

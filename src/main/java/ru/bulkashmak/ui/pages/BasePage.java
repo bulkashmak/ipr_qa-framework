@@ -21,14 +21,14 @@ public class BasePage {
         return this;
     }
 
-    public BasePage setLanguage() {
+    public BasePage setLanguage(String language) {
         LOGGER.info("Установка русского языка на сайте");
 
-        if ($x(BUTTON_PAGE_LANGUAGE_X).text().contains("Русский")) {
+        if ($x(BUTTON_PAGE_LANGUAGE_X).text().contains(language)) {
             return this;
         } else {
             $x(BUTTON_PAGE_LANGUAGE_X).click();
-            $x(MODAL_PAGE_LANGUAGE_X + "//*[text()='Русский']").click();
+            $x(MODAL_PAGE_LANGUAGE_X + String.format("//*[text()='%s']", language)).click();
 
             assertTrue($x(BUTTON_PAGE_LANGUAGE_X).text().contains("Русский"),
                     "Не удалось переключить язык веб-сайта на русский");
