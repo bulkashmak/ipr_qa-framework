@@ -5,17 +5,17 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class UiProperties {
-    private static final Properties prop = new Properties();
+    private static Properties properties = new Properties();
 
     static {
-        try(InputStream inputStream = UiProperties.class.getClassLoader().getResourceAsStream("user.properties")) {
-            prop.load(inputStream);
+        try(InputStream inputStream = UiProperties.class.getClassLoader().getResourceAsStream("ui.properties")) {
+            properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static String getProperty(String nameProperty) {
-        return prop.getProperty(nameProperty);
+        return properties.getProperty(nameProperty);
     }
 }
