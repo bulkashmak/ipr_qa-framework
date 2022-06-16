@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -34,8 +35,11 @@ public class ProfilePage extends BasePage {
         for (SelenideElement post :
                 posts) {
             if (post.$x(".//*[@class='widget_count js-count']").exists()) {
-                post.$x(".//*[@class='media-text_cnt']")
-                        .shouldBe(and("Clickable", visible, enabled)).scrollIntoView(true).click();
+                post.$x(".//*[@class='media-text_cnt']//a")
+//                        .shouldBe(and("Clickable", visible, enabled), Duration.ofSeconds(5))
+                        .shouldBe(visible)
+//                        .scrollIntoView(true)
+                        .click();
                 break;
             }
         }

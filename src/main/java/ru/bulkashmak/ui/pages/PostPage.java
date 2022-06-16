@@ -1,6 +1,7 @@
 package ru.bulkashmak.ui.pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +53,7 @@ public class PostPage extends BasePage {
 
         return this;
     }
+
     public PostPage addComment(String comment) {
         LOGGER.info("Кликнуть кнопку 'Добавить' комментарий");
 
@@ -59,6 +61,7 @@ public class PostPage extends BasePage {
 
         $x("//*[@class='comments_add-controls']//*[@class='button-pro form-actions_yes']").click();
 
+        Selenide.refresh();
         assertTrue($x(COMMENT_LIST_X +
                 String.format("//*[@class='comments_body']//*[text()='%s']", comment))
                         .shouldBe(Condition.visible).isDisplayed(),
