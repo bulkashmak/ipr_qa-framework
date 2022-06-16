@@ -6,8 +6,12 @@ import ru.bulkashmak.api.ApiProperties;
 
 public class BaseStep {
 
-    public void setBaseURI() {
+    public static void setBaseURI() {
         RestAssured.baseURI = ApiProperties.getProperty("uri");
+    }
+
+    public static String getBaseURI() {
+        return ApiProperties.getProperty("uri");
     }
 
     public void setBasePath() {

@@ -1,32 +1,32 @@
 package ru.bulkashmak.api;
 
-import static org.apache.http.HttpStatus.*;
-
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.bulkashmak.api.models.user.User;
 import ru.bulkashmak.api.config.BaseTest;
+import ru.bulkashmak.api.models.user.User;
 
 import java.util.List;
+
+import static org.apache.http.HttpStatus.SC_OK;
+import static ru.bulkashmak.api.config.RestSpec.*;
 
 public class PflbApiTest extends BaseTest {
 
     @Test
     @DisplayName("Получение всех пользователей")
     public void getAllUsersTest() {
+        installSpecs(requestSpec(), responseSpecOK200());
 
         List<User> users = RestAssured
                 .given()
 
                 .when()
-                .contentType(ContentType.JSON)
-                .get("http://77.50.236.203:4880/users")
+                .get("/users")
 
                 .then()
                 .statusCode(SC_OK)
-                .log().all()
+                .log().headers()
                 .extract().body().jsonPath().getList(".", User.class);
     }
 }

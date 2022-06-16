@@ -6,14 +6,15 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import ru.bulkashmak.api.steps.BaseStep;
 
 import static org.apache.http.HttpStatus.*;
 
 public class RestSpec {
 
-    public static RequestSpecification requestSpec(String uri) {
+    public static RequestSpecification requestSpec() {
         return new RequestSpecBuilder()
-                .setBaseUri(uri)
+                .setBaseUri(BaseStep.getBaseURI())
                 .setContentType(ContentType.JSON)
                 .build();
     }
