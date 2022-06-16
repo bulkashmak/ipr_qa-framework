@@ -2,6 +2,7 @@ package ru.bulkashmak.ui.pages;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.bulkashmak.ui.UiProperties;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,14 +16,15 @@ public class BasePage {
     private static final String MODAL_PAGE_LANGUAGE_X = "//div[contains(@class, 'ph-lang-modal')]";
 
     public BasePage openOK() {
-        LOGGER.info("Переход на 'https://ok.ru/'");
-        open("https://ok.ru/");
+        String url =  UiProperties.getProperty("url");
+        LOGGER.info(String.format("Переход на '%s'", url));
+        open(url);
 
         return this;
     }
 
     public BasePage setLanguage(String language) {
-        LOGGER.info("Установка русского языка на сайте");
+        LOGGER.info(String.format("Установка '%s' языка на сайте", language));
 
         if ($x(BUTTON_PAGE_LANGUAGE_X).text().contains(language)) {
             return this;
