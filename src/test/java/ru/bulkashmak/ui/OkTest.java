@@ -3,7 +3,6 @@ package ru.bulkashmak.ui;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bulkashmak.Util.UiUtil;
-import ru.bulkashmak.ui.enums.PhotoCategories;
 
 import java.util.Random;
 
@@ -17,11 +16,12 @@ public class OkTest extends BaseTestUI {
     @Test
     @DisplayName("Добавление нового события с фотографией в ленту")
     public void createNewPostTest() {
+        String albumName = "Личные фотографии";
 
         loginPage.loginToOK()
                 .createNewPost()
                 .inputPostText(postContent)
-                .addPostPhoto(PhotoCategories.PERSONAL_PHOTOS)
+                .addPostPhotoFromAlbum(albumName)
                 .sharePost(postContent);
     }
 
