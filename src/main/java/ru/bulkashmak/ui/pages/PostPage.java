@@ -15,12 +15,13 @@ public class PostPage extends BasePage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PostPage.class);
 
-    private static final String SHORTCUT_MENU_ARROW_X = "//*[@class='new_topic_icodown']";
-    private static final String SHORTCUT_MENU_X = "//*[@id='hook_Block_ShortcutMenu']";
-    private static final String COMMENT_LIST_X = "//*[@class='comments_lst_cnt']";
-    private static final String POST_MODAL_X = "//*[@id='hook_Block_MediaTopicLayerBody']";
-    private static final String POST_MODAL_COMMENT_FIELD_X = "//*[@class='comments_add']//form" +
+    public static final String SHORTCUT_MENU_ARROW_X = "//*[@class='new_topic_icodown']";
+    public static final String SHORTCUT_MENU_X = "//*[@id='hook_Block_ShortcutMenu']";
+    public static final String COMMENT_LIST_X = "//*[@class='comments_lst_cnt']";
+    public static final String POST_MODAL_X = "//*[@id='hook_Block_MediaTopicLayerBody']";
+    public static final String POST_MODAL_COMMENT_FIELD_X = "//*[@class='comments_add']//form" +
             "//*[@class='itx js-comments_add js-ok-e comments_add-ceditable ']";
+    public static final String POST_CONTENT_TEXT_X = "//*[@class='media-text_cnt']";
 
     public PostPage deletePost() {
         LOGGER.info("Удалить событие");
@@ -31,6 +32,12 @@ public class PostPage extends BasePage {
         assertTrue($x(POST_MODAL_X + "//*[text()='Заметка удалена']")
                         .shouldBe(Condition.visible).isDisplayed(),
                 "Сообщение об удалении события не отображается");
+        String postContent = $x(POST_MODAL_X + POST_CONTENT_TEXT_X + "/div").text();
+        closePost();
+        Selenide.refresh();
+        assertFalse($x(ProfilePage.POST_LIST_ELEMENT_X + String.format("//*[text()='%s']", postContent))
+                .isDisplayed(),
+                "Событие по прежнему отображается на странице");
 
         return this;
     }

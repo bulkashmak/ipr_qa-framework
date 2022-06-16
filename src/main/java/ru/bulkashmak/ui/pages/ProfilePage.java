@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProfilePage extends BasePage {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProfilePage.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(ProfilePage.class);
 
-    private static final String POSTS_LIST_X = "//*[@class='feed-list __compact']";
-    private static final String POST_MODAL_X = "//*[@id='hook_Block_MediaTopicLayerBody']";
+    public static final String POSTS_LIST_X = "//*[@class='feed-list __compact']";
+    public static final String POST_LIST_ELEMENT_X = POSTS_LIST_X + "//*[@class='feed-w']";
 
     public PostPage openPost(String postContent) {
         LOGGER.info(String.format("Открыть пост ''%s''", postContent));
@@ -44,7 +44,7 @@ public class ProfilePage extends BasePage {
             }
         }
 
-        assertTrue($x(POST_MODAL_X).shouldBe(visible).isDisplayed(),
+        assertTrue($x(PostPage.POST_MODAL_X).shouldBe(visible).isDisplayed(),
                 "Событие не открылось");
 
         return new PostPage();
