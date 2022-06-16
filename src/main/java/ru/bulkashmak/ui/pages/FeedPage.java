@@ -12,7 +12,9 @@ public class FeedPage extends BasePage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FeedPage.class);
 
-    private static final String NEW_POST_FIELD_X = "//*[@class='pf-head_itx_a']";
+    public static final String NEW_POST_FIELD_X = "//*[@class='pf-head_itx_a']";
+    public static final String FEED_LIST_X = "//*[@class='feed-list __compact']";
+    public static final String FEED_LIST_ELEMENT_X = FEED_LIST_X + "//*[@class='feed-w']";
     LeftNavBar leftNavBar = new LeftNavBar();
 
     public NewPostPage createNewPost() {

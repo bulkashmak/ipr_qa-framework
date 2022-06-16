@@ -1,6 +1,7 @@
 package ru.bulkashmak.ui.pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +54,9 @@ public class NewPostPage {
 
         $x(NEW_POST_MODAL_X + "//*[@title='Поделиться']").click();
 
-        assertTrue($x(String.format("//*[@id='hook_Block_MainFeedsNewFeed']//*[text()='%s']", postContent))
+        $x(FeedPage.FEED_LIST_X).shouldBe(Condition.visible);
+        Selenide.refresh();
+        assertTrue($x(String.format(FeedPage.FEED_LIST_ELEMENT_X + "//*[text()='%s']", postContent))
                 .shouldBe(Condition.visible).isDisplayed(),
                 "Новое событие не опубликовано");
 
