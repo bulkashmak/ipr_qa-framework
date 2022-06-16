@@ -1,4 +1,4 @@
-package ru.bulkashmak.Util;
+package ru.bulkashmak.util;
 
 import java.util.Random;
 

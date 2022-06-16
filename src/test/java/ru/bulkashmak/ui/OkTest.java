@@ -2,7 +2,8 @@ package ru.bulkashmak.ui;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.bulkashmak.Util.UiUtil;
+import ru.bulkashmak.ui.config.BaseTestUI;
+import ru.bulkashmak.util.UiUtil;
 
 import java.util.Random;
 

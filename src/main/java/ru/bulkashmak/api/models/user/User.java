@@ -9,14 +9,14 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse {
+public class User {
 
     private Integer id;
     private String firstName;
     private String secondName;
     private Integer age;
     private Sex sex;
-    private Integer money;
+    private Double money;
 
     @Getter
     enum Sex {

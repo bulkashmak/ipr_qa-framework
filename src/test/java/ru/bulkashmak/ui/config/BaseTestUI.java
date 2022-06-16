@@ -1,8 +1,9 @@
-package ru.bulkashmak.ui;
+package ru.bulkashmak.ui.config;
 
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import ru.bulkashmak.ui.User;
 import ru.bulkashmak.ui.pages.LoginPage;
 
 public class BaseTestUI {
