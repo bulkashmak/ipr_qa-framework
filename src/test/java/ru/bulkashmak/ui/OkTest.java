@@ -10,8 +10,7 @@ import java.util.Random;
 public class OkTest extends BaseTestUI {
 
     final static String postContent = "Тестовое событие " + new Random().nextInt(10000);
-    static UiUtil uiUtil = new UiUtil();
-    final static String commentString = uiUtil.generateRandomStringOfLength(20);
+    final static String commentString = UiUtil.generateRandomStringOfLength(20);
 
     @Test
     @DisplayName("Добавление нового события с фотографией в ленту")
