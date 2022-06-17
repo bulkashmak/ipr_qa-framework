@@ -1,4 +1,4 @@
-package ru.bulkashmak.api.config;
+package ru.bulkashmak.api.specifications;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
