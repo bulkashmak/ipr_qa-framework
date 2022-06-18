@@ -25,6 +25,12 @@ public class RestSpec {
                 .build();
     }
 
+    public static ResponseSpecification responseSpecCreated201() {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(SC_CREATED)
+                .build();
+    }
+
     public static void installSpecs(RequestSpecification requestSpec, ResponseSpecification responseSpec) {
         RestAssured.requestSpecification = requestSpec;
         RestAssured.responseSpecification = responseSpec;
