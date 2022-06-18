@@ -1,12 +1,8 @@
 package ru.bulkashmak.api.models.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserResponse {
@@ -19,7 +15,7 @@ public class UserResponse {
     private Double money;
 
     @Getter
-    enum Sex {
+    public enum Sex {
         MALE,
         FEMALE
     }
