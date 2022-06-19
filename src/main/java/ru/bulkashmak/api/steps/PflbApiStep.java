@@ -50,4 +50,16 @@ public class PflbApiStep extends BaseStep {
                 .then()
                 .extract().as(UserResponse.class);
     }
+
+    public UserResponse postUserByIdMoney(Integer userId, Integer money) {
+        LOGGER.info(String.format("Отправка запроса POST /user/%s/money/%s", userId, money));
+        installSpecs(requestSpec(), responseSpecOK200());
+
+        return RestAssured.given()
+                .when()
+                .post(String.format("/user/%s/money/%s", userId, money))
+
+                .then()
+                .extract().as(UserResponse.class);
+    }
 }

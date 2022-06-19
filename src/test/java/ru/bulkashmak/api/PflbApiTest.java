@@ -22,7 +22,7 @@ public class PflbApiTest extends BaseTest {
         List<UserResponse> usersRs = step.getUsers();
 
         usersRs.forEach(x -> assertNotNull(x.getId(),
-                String.format("user '%s' id is null", x.getFirstName())));
+                String.format("user's '%s' id is null", x.getFirstName())));
     }
 
     @Test
@@ -34,5 +34,11 @@ public class PflbApiTest extends BaseTest {
 
         assertEquals(userRs, step.getUserById(userRs.getId()),
                 "пользователь создан некорректно");
+    }
+
+    @Test
+    @DisplayName("Изменение суммы у пользователя")
+    public void postUserMoneyTest() {
+
     }
 }
