@@ -10,6 +10,7 @@ import ru.bulkashmak.api.steps.PflbApiStep;
 import ru.bulkashmak.api.testdata.TestDataGenerator;
 
 import java.util.List;
+import java.util.Random;
 
 public class PflbApiTest extends BaseTest {
 
@@ -39,6 +40,13 @@ public class PflbApiTest extends BaseTest {
     @Test
     @DisplayName("Изменение суммы у пользователя")
     public void postUserMoneyTest() {
+        PflbApiStep step = new PflbApiStep();
+        List<UserResponse> usersRs = step.getUsers();
+        UserResponse randomUser = usersRs.get(new Random().nextInt(usersRs.size()));
+        Double money = TestDataGenerator.generateRandomMoney();
+        UserResponse response = step.postUserByIdMoney(randomUser.getId(), money);
 
+        assertEquals(randomUser.getMoney() + money, response.getMoney(),
+                "Сумма денег пользователя изменена некорректно");
     }
 }
