@@ -1,12 +1,14 @@
 package ru.bulkashmak.api.testdata;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.bulkashmak.api.models.user.UserRequest;
 import ru.bulkashmak.api.models.user.UserResponse;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class TestDataGenerator {
@@ -24,22 +26,22 @@ public class TestDataGenerator {
         );
     }
 
-    private static String generateRandomFemaleFirstName() {
+    public static String generateRandomFemaleFirstName() {
         return getRandomStringFromList(readFileTXT(
                 new File("src/main/resources/testdata/user/firstNames/femaleFirstNames.txt")));
     }
 
-    private static String generateRandomMaleFirstName() {
+    public static String generateRandomMaleFirstName() {
         return getRandomStringFromList(readFileTXT(
                 new File("src/main/resources/testdata/user/firstNames/maleFirstNames.txt")));
     }
 
-    private static String generateRandomLastName() {
+    public static String generateRandomLastName() {
         return getRandomStringFromList(readFileTXT(
                 new File("src/main/resources/testdata/user/lastNames/lastNames.txt")));
     }
 
-    private static List<String> readFileTXT(File file) {
+    public static List<String> readFileTXT(File file) {
         List<String> lines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
@@ -54,12 +56,12 @@ public class TestDataGenerator {
         return lines;
     }
 
-    private static String getRandomStringFromList(List<String> lines) {
+    public static String getRandomStringFromList(List<String> lines) {
         int index = RANDOM.nextInt(lines.size());
         return lines.get(index);
     }
 
-    private static Integer generateRandomAge() {
+    public static Integer generateRandomAge() {
         return RANDOM.nextInt(47) + 18;
     }
 
@@ -68,7 +70,7 @@ public class TestDataGenerator {
         return userSex.get(RANDOM.nextInt(userSex.size()));
     }
 
-    private static Double generateRandomMoney() {
+    public static Double generateRandomMoney() {
         return Math.ceil(Math.random() * ((100000 - 1000) + 1) + 1000);
     }
 }
