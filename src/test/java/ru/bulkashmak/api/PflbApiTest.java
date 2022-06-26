@@ -1,6 +1,5 @@
 package ru.bulkashmak.api;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bulkashmak.api.config.BaseTest;
@@ -13,6 +12,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PflbApiTest extends BaseTest {
 
@@ -52,7 +53,7 @@ public class PflbApiTest extends BaseTest {
         bdList.add(randomUser.getMoney());
         bdList.add(money);
 
-        assertEquals(bdList.stream().reduce(BigDecimal.ZERO, BigDecimal::add), response.getMoney(),
+        assertEquals(0, bdList.stream().reduce(BigDecimal.ZERO, BigDecimal::add).compareTo(response.getMoney()),
                 "Сумма денег пользователя изменена некорректно");
     }
 }
