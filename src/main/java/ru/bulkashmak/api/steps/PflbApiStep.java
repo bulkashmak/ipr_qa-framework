@@ -8,9 +8,9 @@ import ru.bulkashmak.api.models.user.UserResponse;
 
 import java.util.List;
 
-import static ru.bulkashmak.api.specifications.RestSpec.*;
+import static ru.bulkashmak.api.specifications.ApiSpec.*;
 
-public class PflbApiStep extends BaseStep {
+public class PflbApiStep {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PflbApiStep.class);
 
