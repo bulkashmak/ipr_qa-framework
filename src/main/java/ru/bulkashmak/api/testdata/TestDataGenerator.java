@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.*;
 
 public class TestDataGenerator {
@@ -18,7 +19,7 @@ public class TestDataGenerator {
 
     public UserRequest generateUser() {
         return new UserRequest(
-                generateRandomMaleFirstName(),
+                generateRandomFirstName(),
                 generateRandomLastName(),
                 generateRandomAge(),
                 generateRandomSex(),
@@ -26,12 +27,7 @@ public class TestDataGenerator {
         );
     }
 
-    public static String generateRandomFemaleFirstName() {
-        return getRandomStringFromList(readFileTXT(
-                new File("src/main/resources/testdata/user/firstNames/femaleFirstNames.txt")));
-    }
-
-    public static String generateRandomMaleFirstName() {
+    public static String generateRandomFirstName() {
         return getRandomStringFromList(readFileTXT(
                 new File("src/main/resources/testdata/user/firstNames/maleFirstNames.txt")));
     }
@@ -70,7 +66,7 @@ public class TestDataGenerator {
         return userSex.get(RANDOM.nextInt(userSex.size()));
     }
 
-    public static Double generateRandomMoney() {
-        return Math.ceil(Math.random() * ((100000 - 1000) + 1) + 1000);
+    public static BigDecimal generateRandomMoney() {
+        return BigDecimal.valueOf(Math.ceil(Math.random() * ((100000 - 1000) + 1) + 1000));
     }
 }
