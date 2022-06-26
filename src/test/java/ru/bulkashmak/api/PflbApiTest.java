@@ -9,11 +9,11 @@ import ru.bulkashmak.api.steps.PflbApiStep;
 import ru.bulkashmak.api.testdata.TestDataGenerator;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class PflbApiTest extends BaseTest {
 
@@ -49,11 +49,13 @@ public class PflbApiTest extends BaseTest {
         BigDecimal money = TestDataGenerator.generateRandomMoney();
         UserResponse response = step.postUserByIdMoney(randomUser.getId(), money);
 
-        List<BigDecimal> bdList = new ArrayList<>();
-        bdList.add(randomUser.getMoney());
-        bdList.add(money);
+//        List<BigDecimal> bdList = new ArrayList<>();
+//        bdList.add(randomUser.getMoney());
+//        bdList.add(money);
 
-        assertEquals(0, bdList.stream().reduce(BigDecimal.ZERO, BigDecimal::add).compareTo(response.getMoney()),
+        BigDecimal expectedResult = randomUser.getMoney().add(money);
+
+        assertEquals(0, expectedResult.compareTo(response.getMoney()),
                 "Сумма денег пользователя изменена некорректно");
     }
 }
