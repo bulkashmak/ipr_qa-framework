@@ -2,6 +2,8 @@ package ru.bulkashmak.api.models.user;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,7 +14,7 @@ public class UserResponse {
     private String secondName;
     private Integer age;
     private Sex sex;
-    private Double money;
+    private BigDecimal money;
 
     @Getter
     public enum Sex {

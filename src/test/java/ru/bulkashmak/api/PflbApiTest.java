@@ -9,6 +9,8 @@ import ru.bulkashmak.api.models.user.UserResponse;
 import ru.bulkashmak.api.steps.PflbApiStep;
 import ru.bulkashmak.api.testdata.TestDataGenerator;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -43,10 +45,14 @@ public class PflbApiTest extends BaseTest {
         PflbApiStep step = new PflbApiStep();
         List<UserResponse> usersRs = step.getUsers();
         UserResponse randomUser = usersRs.get(new Random().nextInt(usersRs.size()));
-        Double money = TestDataGenerator.generateRandomMoney();
+        BigDecimal money = TestDataGenerator.generateRandomMoney();
         UserResponse response = step.postUserByIdMoney(randomUser.getId(), money);
 
-        assertEquals(randomUser.getMoney() + money, response.getMoney(),
+        List<BigDecimal> bdList = new ArrayList<>();
+        bdList.add(randomUser.getMoney());
+        bdList.add(money);
+
+        assertEquals(bdList.stream().reduce(BigDecimal.ZERO, BigDecimal::add), response.getMoney(),
                 "Сумма денег пользователя изменена некорректно");
     }
 }

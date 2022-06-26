@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import ru.bulkashmak.api.models.user.UserRequest;
 import ru.bulkashmak.api.models.user.UserResponse;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static ru.bulkashmak.api.specifications.ApiSpec.*;
@@ -23,11 +24,12 @@ public class PflbApiStep {
                 .get("/users")
 
                 .then()
+                .log().all()
                 .extract().body().jsonPath().getList(".", UserResponse.class);
     }
 
     public UserResponse getUserById(Integer id) {
-        LOGGER.info(String.format("Отправка запроса GET /user/%s", id));
+        LOGGER.info("Отправка запроса GET /user/{}", id);
         installSpecs(requestSpec(), responseSpecOK200());
 
         return RestAssured.given()
@@ -35,11 +37,12 @@ public class PflbApiStep {
                 .get(String.format("/user/%s", id))
 
                 .then()
+                .log().all()
                 .extract().as(UserResponse.class);
     }
 
     public UserResponse postAddUser(UserRequest userRq) {
-        LOGGER.info(String.format("Отправка запроса POST /addUser user.firstname=%s", userRq.getFirstName()));
+        LOGGER.info("Отправка запроса POST /addUser user.firstname={}", userRq.getFirstName());
         installSpecs(requestSpec(), responseSpecCreated201());
 
         return RestAssured.given()
@@ -48,11 +51,12 @@ public class PflbApiStep {
                 .post("/addUser")
 
                 .then()
+                .log().all()
                 .extract().as(UserResponse.class);
     }
 
-    public UserResponse postUserByIdMoney(Integer userId, Double money) {
-        LOGGER.info(String.format("Отправка запроса POST /user/%s/money/%s", userId, money));
+    public UserResponse postUserByIdMoney(Integer userId, BigDecimal money) {
+        LOGGER.info("Отправка запроса POST /user/{}/money/{}", userId, money);
         installSpecs(requestSpec(), responseSpecOK200());
 
         return RestAssured.given()
@@ -60,6 +64,7 @@ public class PflbApiStep {
                 .post(String.format("/user/%s/money/%s", userId, money))
 
                 .then()
+                .log().all()
                 .extract().as(UserResponse.class);
     }
 }
