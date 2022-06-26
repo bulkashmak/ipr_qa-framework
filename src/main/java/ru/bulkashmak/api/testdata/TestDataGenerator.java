@@ -62,8 +62,9 @@ public class TestDataGenerator {
     }
 
     private static UserResponse.Sex generateRandomSex() {
-        List<UserResponse.Sex> userSex = Collections.unmodifiableList(Arrays.asList(UserResponse.Sex.values()));
-        return userSex.get(RANDOM.nextInt(userSex.size()));
+        UserResponse.Sex[] sexArr = UserResponse.Sex.values();
+
+        return sexArr[RANDOM.nextInt(sexArr.length)];
     }
 
     public static BigDecimal generateRandomMoney() {

@@ -49,10 +49,6 @@ public class PflbApiTest extends BaseTest {
         BigDecimal money = TestDataGenerator.generateRandomMoney();
         UserResponse response = step.postUserByIdMoney(randomUser.getId(), money);
 
-//        List<BigDecimal> bdList = new ArrayList<>();
-//        bdList.add(randomUser.getMoney());
-//        bdList.add(money);
-
         BigDecimal expectedResult = randomUser.getMoney().add(money);
 
         assertEquals(0, expectedResult.compareTo(response.getMoney()),
