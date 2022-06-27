@@ -48,7 +48,7 @@ public class PflbApiRequest {
                 .extract().as(UserResponse.class);
     }
 
-    public UserResponse pustUserByIdMoney(Integer userId, BigDecimal userMoney) {
+    public UserResponse postUserByIdMoney(Integer userId, BigDecimal userMoney) {
         LOGGER.info("Отправка запроса POST /user/{}/money/{}", userId, userMoney);
 
         return BaseRequest.postRequest()

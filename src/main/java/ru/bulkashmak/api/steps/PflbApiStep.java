@@ -1,72 +1,39 @@
 package ru.bulkashmak.api.steps;
 
-import io.restassured.RestAssured;
-import io.restassured.common.mapper.TypeRef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.bulkashmak.api.models.user.UserRequest;
 import ru.bulkashmak.api.models.user.UserResponse;
+import ru.bulkashmak.api.requests.PflbApiRequest;
 
 import java.math.BigDecimal;
 import java.util.List;
-
-import static ru.bulkashmak.api.specifications.ApiSpec.*;
 
 public class PflbApiStep {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PflbApiStep.class);
 
     public List<UserResponse> getUsers() {
-        LOGGER.info("Отправка запроса GET /users");
-        installSpecs(requestSpec(), responseSpecOK200());
+        PflbApiRequest request = new PflbApiRequest();
 
-        return RestAssured.given()
-                .log().all()
-                .when()
-                .get("/users")
-
-                .then()
-//                .extract().body().jsonPath().getList(".", UserResponse.class);
-                .extract().body().as(new TypeRef<>() {});
+        return request.getUsers();
     }
 
-    public UserResponse getUserById(Integer id) {
-        LOGGER.info("Отправка запроса GET /user/{}", id);
-        installSpecs(requestSpec(), responseSpecOK200());
+    public UserResponse getUserById(Integer userId) {
+        PflbApiRequest request = new PflbApiRequest();
 
-        return RestAssured.given()
-                .when()
-                .get(String.format("/user/%s", id))
-
-                .then()
-                .log().all()
-                .extract().as(UserResponse.class);
+        return request.getUserById(userId);
     }
 
-    public UserResponse postAddUser(UserRequest userRq) {
-        LOGGER.info("Отправка запроса POST /addUser user.firstname={}", userRq.getFirstName());
-        installSpecs(requestSpec(), responseSpecCreated201());
+    public UserResponse postAddUser(UserRequest userRequest) {
+        PflbApiRequest request = new PflbApiRequest();
 
-        return RestAssured.given()
-                .body(userRq)
-                .when()
-                .post("/addUser")
-
-                .then()
-                .log().all()
-                .extract().as(UserResponse.class);
+        return request.postAddUser(userRequest);
     }
 
-    public UserResponse postUserByIdMoney(Integer userId, BigDecimal money) {
-        LOGGER.info("Отправка запроса POST /user/{}/money/{}", userId, money);
-        installSpecs(requestSpec(), responseSpecOK200());
+    public UserResponse postUserByIdMoney(Integer userId, BigDecimal userMoney) {
+        PflbApiRequest request = new PflbApiRequest();
 
-        return RestAssured.given()
-                .when()
-                .post(String.format("/user/%s/money/%s", userId, money))
-
-                .then()
-                .log().all()
-                .extract().as(UserResponse.class);
+        return request.postUserByIdMoney(userId, userMoney);
     }
 }
