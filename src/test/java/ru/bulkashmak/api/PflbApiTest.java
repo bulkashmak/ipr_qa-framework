@@ -1,7 +1,5 @@
 package ru.bulkashmak.api;
 
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bulkashmak.api.config.BaseTest;
