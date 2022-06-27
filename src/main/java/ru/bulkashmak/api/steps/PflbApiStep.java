@@ -1,6 +1,7 @@
 package ru.bulkashmak.api.steps;
 
 import io.restassured.RestAssured;
+import io.restassured.common.mapper.TypeRef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.bulkashmak.api.models.user.UserRequest;
@@ -20,12 +21,13 @@ public class PflbApiStep {
         installSpecs(requestSpec(), responseSpecOK200());
 
         return RestAssured.given()
+                .log().all()
                 .when()
                 .get("/users")
 
                 .then()
-                .log().all()
-                .extract().body().jsonPath().getList(".", UserResponse.class);
+//                .extract().body().jsonPath().getList(".", UserResponse.class);
+                .extract().body().as(new TypeRef<>() {});
     }
 
     public UserResponse getUserById(Integer id) {

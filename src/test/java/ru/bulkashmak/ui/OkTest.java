@@ -3,7 +3,7 @@ package ru.bulkashmak.ui;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.bulkashmak.ui.config.BaseTestUI;
-import ru.bulkashmak.util.UiUtil;
+import ru.bulkashmak.util.Util;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ import java.util.Random;
 public class OkTest extends BaseTestUI {
 
     final static String postContent = "Тестовое событие " + new Random().nextInt(10000);
-    final static String commentString = UiUtil.generateRandomStringOfLength(20);
+    final static String commentString = Util.generateRandomStringOfLength(20);
 
     @Test
     @DisplayName("Добавление нового события с фотографией в ленту")
