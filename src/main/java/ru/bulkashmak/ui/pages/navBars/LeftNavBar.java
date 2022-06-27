@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LeftNavBar {
-    Logger LOGGER = LoggerFactory.getLogger(LeftNavBar.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LeftNavBar.class);
 
     public ProfilePage goToProfilePage() {
         LOGGER.info("Переход на страницу 'Профиль'");
