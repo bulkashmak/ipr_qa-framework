@@ -1,6 +1,7 @@
 package ru.bulkashmak.api.requests;
 
 import io.restassured.common.mapper.TypeRef;
+import static org.apache.http.HttpStatus.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.bulkashmak.api.models.user.UserRequest;
@@ -22,6 +23,7 @@ public class PflbApiRequest {
                 .get("/users")
 
                 .then()
+                .statusCode(SC_OK)
                 .extract().body().as(new TypeRef<>() {});
     }
 
@@ -33,6 +35,7 @@ public class PflbApiRequest {
                 .get(String.format("/user/%s", userId))
 
                 .then()
+                .statusCode(SC_OK)
                 .extract().as(UserResponse.class);
     }
 
@@ -45,6 +48,7 @@ public class PflbApiRequest {
                 .post("/addUser")
 
                 .then()
+                .statusCode(SC_CREATED)
                 .extract().as(UserResponse.class);
     }
 
@@ -56,6 +60,7 @@ public class PflbApiRequest {
                 .post(String.format("/user/%s/money/%s", userId, userMoney))
 
                 .then()
+                .statusCode(SC_OK)
                 .extract().as(UserResponse.class);
     }
 }
