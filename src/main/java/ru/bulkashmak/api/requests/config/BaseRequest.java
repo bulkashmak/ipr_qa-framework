@@ -7,18 +7,21 @@ import ru.bulkashmak.api.ApiProperties;
 
 public class BaseRequest {
 
-    public static RequestSpecification getRequest() {
+    private static RequestSpecification createBaseRequest() {
 
         return RestAssured.given()
                 .log().all()
                 .baseUri(ApiProperties.getProperty("uri"));
     }
 
+    public static RequestSpecification getRequest() {
+
+        return createBaseRequest();
+    }
+
     public static RequestSpecification postRequest() {
 
-        return RestAssured.given()
-                .log().all()
-                .baseUri(ApiProperties.getProperty("uri"))
+        return createBaseRequest()
                 .contentType(ContentType.JSON);
     }
 }
