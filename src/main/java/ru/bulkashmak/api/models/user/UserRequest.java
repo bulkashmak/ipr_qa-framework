@@ -13,14 +13,8 @@ public class UserRequest {
     private String firstName;
     private String secondName;
     private Integer age;
-    private UserResponse.Sex sex;
+    private UserSex sex;
     private BigDecimal money;
-
-    @Getter
-    enum Sex {
-        MALE,
-        FEMALE
-    }
 
     @Override
     public boolean equals(Object o) {

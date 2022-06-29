@@ -3,7 +3,7 @@ package ru.bulkashmak.api.testdata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.bulkashmak.api.models.user.UserRequest;
-import ru.bulkashmak.api.models.user.UserResponse;
+import ru.bulkashmak.api.models.user.UserSex;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -61,8 +61,8 @@ public class TestDataGenerator {
         return RANDOM.nextInt(47) + 18;
     }
 
-    private static UserResponse.Sex generateRandomSex() {
-        UserResponse.Sex[] sexArr = UserResponse.Sex.values();
+    private static UserSex generateRandomSex() {
+        UserSex[] sexArr = UserSex.values();
 
         return sexArr[RANDOM.nextInt(sexArr.length)];
     }

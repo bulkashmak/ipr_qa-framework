@@ -14,14 +14,8 @@ public class UserResponse {
     private String firstName;
     private String secondName;
     private Integer age;
-    private Sex sex;
+    private UserSex sex;
     private BigDecimal money;
-
-    @Getter
-    public enum Sex {
-        MALE,
-        FEMALE
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,4 +1,4 @@
-package ru.bulkashmak.api.requests.config;
+package ru.bulkashmak.api.rests.config;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
