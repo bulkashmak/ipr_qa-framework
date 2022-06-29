@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.bulkashmak.api.models.user.UserRequest;
 import ru.bulkashmak.api.models.user.UserResponse;
-import ru.bulkashmak.api.rests.PflbApiRests;
+import ru.bulkashmak.api.rests.PflbApi;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class PflbApiStep {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PflbApiStep.class);
-    private final PflbApiRests api = new PflbApiRests();
+    private final PflbApi api = new PflbApi();
 
     public List<UserResponse> getAllUsers() {
         List<UserResponse> usersResponse = api.getUsersOK();

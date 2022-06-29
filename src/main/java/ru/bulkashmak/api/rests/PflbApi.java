@@ -14,9 +14,9 @@ import java.util.List;
 import static org.apache.http.HttpStatus.SC_CREATED;
 import static org.apache.http.HttpStatus.SC_OK;
 
-public class PflbApiRests {
+public class PflbApi {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PflbApiRests.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PflbApi.class);
 
     public Response getUsers() {
         LOGGER.info("Отправка запроса GET /users");
